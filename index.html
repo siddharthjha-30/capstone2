@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navjivan RC Bay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+  <main id="loginPage" class="login-wrapper">
+    <form id="loginForm" class="login-card">
+      <div class="login-mark">RC</div>
+      <h1>NAVJIVAN <span>RC BAY</span></h1>
+      <p class="subtitle">Authorized access only</p>
+
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        placeholder="Enter username"
+        autocomplete="username"
+        required
+      >
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter password"
+        autocomplete="current-password"
+        required
+      >
+
+      <p id="loginError" class="login-error" role="alert"></p>
+      <button type="submit" class="login-btn">Login to Dashboard</button>
+      <p class="login-foot">NAVJIVAN RC CONTROL SYSTEM</p>
+    </form>
+  </main>
+
+  <!-- RC CAR DASHBOARD -->
+  <main id="dashboard" class="rig" hidden>
+    <header>
+      <div>
+        <h1>NAVJIVAN <span>RC BAY</span></h1>
+        <div class="subtitle">
+          Serial link control desk — HC-05 / HC-06
+        </div>
+      </div>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    </header>
+
+    <section class="panel">
+      <div class="link-row">
+        <div id="statusDot" class="status-dot"></div>
+        <button id="connectBtn" class="connect-btn">
+          Connect Serial Port
+        </button>
+      </div>
+
+      <div class="mode-row">
+        <button class="mode-btn active" id="btnManual">
+          Manual Drive
+        </button>
+        <button class="mode-btn" id="btnAuto">
+          Obstacle Mode
+        </button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="readout-label">Drive Controls</div>
+
+      <div class="pad-grid">
+        <div class="blank"></div>
+        <button class="pad-btn" data-cmd="F" aria-label="Forward">&#9650;</button>
+        <div class="blank"></div>
+
+        <button class="pad-btn" data-cmd="L" aria-label="Left">&#9664;</button>
+        <button class="pad-btn stop" data-cmd="S">STOP</button>
+        <button class="pad-btn" data-cmd="R" aria-label="Right">&#9654;</button>
+
+        <div class="blank"></div>
+        <button class="pad-btn" data-cmd="B" aria-label="Backward">&#9660;</button>
+        <div class="blank"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="readout-label">Car Status</div>
+
+      <div class="telemetry">
+        <div class="tele-cell">
+          <div class="tele-val" id="teleMode">--</div>
+          <div class="tele-key">Mode</div>
+        </div>
+
+        <div class="tele-cell">
+          <div class="tele-val" id="teleScan">-- / --</div>
+          <div class="tele-key">Left / Right cm</div>
+        </div>
+
+        <div class="tele-cell">
+          <div class="tele-val" id="teleAction">--</div>
+          <div class="tele-key">Last Avoidance</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="readout-label">Serial Monitor</div>
+      <div id="log" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <p class="note">
+        <strong>Before connecting:</strong> Pair the HC-05/HC-06
+        with your computer through Bluetooth settings first.
+        Use Chrome or Edge on a computer with Web Serial support.
+      </p>
+      <p class="note">
+        Drive commands require a compatible microcontroller program.
+        Disconnect or stop the car safely when finished.
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
